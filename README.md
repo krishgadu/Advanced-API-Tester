@@ -1,113 +1,84 @@
-Advanced API Tester streamlines API penetration testing by automatically importing API definitions, configuring authentication headers, and detecting authorization flaws through differential response analysis. Perfect for bug bounty hunters and security professionals testing complex API endpoints.
+# Advanced API Tester – Burp Suite Extension
 
-✨ Key Features
-Multi-Format API Import: Supports JSON, OpenAPI/Swagger, WSDL, and Postman collections
+Automated API security testing inside Burp Suite: import API definitions, run admin-vs-user differential scans, and instantly spot access-control flaws through color-coded results.
 
-Burp History Integration: Import requests directly from Burp Suite's proxy history
+---
 
-Differential Analysis: Compare admin vs user responses to identify access control issues
+## ✨ Features
+- **Multi-format import**: JSON, OpenAPI/Swagger, WSDL, Postman collections  
+- **Burp history integration**: add captured requests with one click  
+- **Differential analysis**: compares admin vs user responses for auth-z issues  
+- **Color-coded table**: red (vulnerable) / green (safe) status indicators  
+- **Flexible auth headers**: set distinct tokens or cookies per role  
+- **Enhanced viewer**: side-by-side request/response tabs  
+- **Remote spec loading**: fetch API definitions by URL  
 
-Color-Coded Results: Visual vulnerability indicators with red/green status coding
+---
 
-Custom Authentication: Flexible header configuration for multiple user roles
+## 🚀 Installation
+1. Download the latest `.jar` from [releases](./releases).  
+2. In Burp Suite, go to **Extender → Extensions → Add**.  
+3. Select **Java** as the type and choose the downloaded file.  
+4. Click **Next** to load the extension.
 
-Request/Response Viewer: Enhanced tabs for detailed HTTP message analysis
+---
 
-Vulnerability Detection: Automated identification of authorization bypasses
+## 📋 Requirements
+- Burp Suite Community or Professional  
+- Java 8+  
 
-Remote URL Loading: Import API definitions from remote endpoints
+---
 
-🚀 Installation
-Download the .jar file from the releases page
+## 🎯 Usage
 
-Open Burp Suite → Extensions → Add
+| Step | Action | Details |
+|------|--------|---------|
+| 1 | **Load API** | Click **Load API Definition**, **Load URL**, or **Import from Burp History** |
+| 2 | **Set Auth** | Fill **Admin Headers** and **User Headers** panels |
+| 3 | **Run Tests** | Press **Run Vulnerability Tests**; progress shows in real time |
+| 4 | **Review** | Red rows = potential vuln, green = safe; click a row for full messages |
 
-Select "Java" as extension type
+Example results:
+Method URL Admin User Vulnerability
+POST /api/admin/delete-user 200 200 VULNERABLE
+GET /api/user/profile 200 200 Safe
 
-Choose the downloaded .jar file
+---
 
-Click "Next" to load the extension
+## 🛡️ Detection Logic
+1. Compare HTTP status codes.  
+2. Measure body length difference.  
+3. Compute body similarity; > 90 % with identical codes flags a potential bypass.  
 
-📋 Requirements
-Burp Suite Professional or Community Edition
+---
 
-Java 8 or higher
+## 🔧 Supported Formats
 
-API definition files (JSON/OpenAPI/WSDL/Postman)
+| Format | Description |
+|--------|-------------|
+| **OpenAPI / Swagger** | Standard JSON specs |
+| **Postman Collection** | V2 JSON exports |
+| **WSDL** | SOAP service definitions |
+| **Burp History** | Proxy-captured requests |
 
-🎯 Usage
-1. Load API Definition
-Click "Load API Definition" to import from file
+---
 
-Use "Load URL" for remote API specifications
+## 🤝 Contributing
+1. Fork the repo.  
+2. Create a feature branch: `git checkout -b feature/my-change`  
+3. Commit and push: `git commit -m "Add cool feature"`  
+4. Open a Pull Request.  
 
-Or "Import from Burp History" for existing requests
+---
 
-2. Configure Authentication
-Admin Headers: Add privileged user authentication (e.g., Authorization: Bearer admin-token)
+## 📝 License
+Distributed under the MIT License. See `LICENSE` for details.
 
-User Headers: Add standard user authentication (e.g., Authorization: Bearer user-token)
+---
 
-3. Run Tests
-Click "Run Vulnerability Tests" to start analysis
+> **Disclaimer**  
+> Use this tool only against systems you have explicit permission to test.
 
-Monitor progress as requests are tested with both privilege levels
+---
 
-Review color-coded results in the main table
-
-4. Analyze Results
-Red rows: Potential vulnerabilities detected
-
-Green rows: Proper access controls in place
-
-Click any row to view detailed request/response data
-
-🛡️ Vulnerability Detection
-The extension identifies access control issues by:
-
-Comparing HTTP status codes between admin and user responses
-
-Analyzing response length differences
-
-Calculating content similarity ratios
-
-Flagging endpoints with inconsistent authorization behavior
-
-🔧 Supported Formats
-Format	Description
-OpenAPI/Swagger	JSON specifications with full endpoint documentation
-Postman Collections	Exported collection files with request definitions
-WSDL	XML-based web service descriptions
-Burp History	Direct import from proxy traffic
-📊 Example Output
-text
-Method  URL                           Admin Status  User Status  Vulnerability
-GET     /api/admin/users             200          403          Safe
-POST    /api/admin/delete-user       200          200          VULNERABLE  
-
-🤝 Contributing
-Fork the repository
-
-Create a feature branch (git checkout -b feature/enhancement)
-
-Commit changes (git commit -m 'Add new feature')
-
-Push to branch (git push origin feature/enhancement)
-
-Open a Pull Request
-
-📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-⚠️ Disclaimer
-This tool is intended for authorized security testing only. Users are responsible for ensuring they have proper permission before testing any applications.
-
-🐛 Issues & Support
-Report bugs via GitHub Issues
-
-Feature requests welcome
-
-Join discussions in Issues for support
-
-🏷️ Tags
-burp-suite api-security penetration-testing vulnerability-scanner access-control authorization security-testing bug-bounty cybersecurity java
+⭐ **Star this repo if it helps your testing workflow!**
