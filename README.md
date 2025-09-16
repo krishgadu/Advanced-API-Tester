@@ -16,16 +16,16 @@ Automated API security testing inside Burp Suite: import API definitions, run ad
 ---
 
 ## 🚀 Installation
-1. Download the latest `.jar` from [releases](./releases).  
+1. Download the latest `.python` file.  
 2. In Burp Suite, go to **Extender → Extensions → Add**.  
-3. Select **Java** as the type and choose the downloaded file.  
+3. Select **Python** as the type and choose the downloaded file.  
 4. Click **Next** to load the extension.
 
 ---
 
 ## 📋 Requirements
 - Burp Suite Community or Professional  
-- Java 8+  
+- Jython  
 
 ---
 
